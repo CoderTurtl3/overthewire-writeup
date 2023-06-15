@@ -214,6 +214,31 @@ $ nmap localhost -p 31000-32000
 - Since there aren't to many ports we can just test them 1 by 1.
 $ openssl s_client -connect localhost:{insert port}
 - And after a few tries we got the right port 31790. 
-
+- Now we got the credentials for level 17.
 
 17->18
+- Now to connect to level 17 we got to use the ssh credentials given in the last level.
+$ cp lvl17creds.txt sshkey.private
+- SSH doesn't allow the use of keys that can be accessed by others so we need to set the permissions to only allow read by you.
+$ chmod 400 sshkey.private
+- And now we can connect to the server.
+$ ssh -i sshkey.private bandit17@bandit.labs.overthewire.org -p 2220
+- So now that we are in... We have two files "password.old" and "password.new". The password for level 18 is in the new file and it is the only line that has been changed between the two files.
+- Tool called diff can be used to find differences between files.
+$ diff passwords.old passwords.new
+- The line after > is the changed line on the later file so the password is after it.
+hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg
+
+18->19
+- The password for level 19 is stored in a file "readme" in the homedir. The thing is, someone has modified ".bashrc" file to log out when you log in with SSH.
+- Good thing is we can send commands directly with SSH. 
+$ ssh bandit18@bandit.labs.overthewire.org -p 2220 "cat readme"
+awhqfNnAbc1naukrpqDYcF95h7HoMTrC
+
+19->20
+- To gain access to the next level, you should use the setuid binary in the homedirectory. The password for this level can be found in the usual place (/etc/bandit_pass), after you have used the setuid binary.
+- The password for bandit20 can be read by using the binary given.
+$ ./bandit20-do cat /etc/bandit_pass/bandit20
+VxCazJaVykI6W36BkBU0mJTCM8rR95XT
+
+20->21
