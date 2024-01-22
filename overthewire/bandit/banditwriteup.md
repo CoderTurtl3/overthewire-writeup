@@ -10,7 +10,6 @@ $ ssh bandit0@bandit.labs.overthewire.org -p 2220
 0->1
 - The password for bandit1 is in the file "readme"
 $ cat readme
-NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL
 
 1->2
 - Connect to bandit.labs.overthewire.org on port 2220 via SSH as user "bandit1"
@@ -19,7 +18,6 @@ $ ssh bandit1@bandit.labs.overthewire.org -p 2220
 - Since the filename contains a special character we cannot just use "cat -"
 - To get the password we can use < symbol after cat to indicate the special filename.
 $ cat < -
-rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi
 
 2->3
 - Connect to bandit.labs.overthewire.org on port 2220 via SSH as user "bandit2"
@@ -27,7 +25,6 @@ $ ssh bandit2@bandit.labs.overthewire.org -p 2220
 - The password for bandit3 is in the file "spaces in this filename"
 - To let cat know we want the one specific file with spaces instead of many different files, we can use "\ "
 $ cat spaces\ in\ the\ filename
-aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG
 
 3->4
 - Connect to bandit.labs.overthewire.org on port 2220 via SSH as user "bandit3"
@@ -37,7 +34,6 @@ $ ssh bandit3@bandit.labs.overthewire.org -p 2220
 $ ls -la
 - We find out the hidden file is called ".hidden"
 $ cat .hidden 
-2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe
 
 4->5
 - Connect to bandit.labs.overthewire.org on port 2220 via SSH as user "bandit4"
@@ -48,7 +44,6 @@ $ ssh bandit4@bandit.labs.overthewire.org -p 2220
 $ file -- -file*
 - And with that we see the only file containing ASCII text is the file "-file07"
 $ cat < -file07
-lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR
 
 5->6
 - Connect to bandit.labs.overthewire.org on port 2220 via SSH as user "bandit5"
@@ -62,7 +57,6 @@ $ file `find . -size 1033c ! -executable` | grep ASCII
 - "find . -size 1033c ! -executable" finds files that are of size 1033 bytes and non executable. Then file with the last command  lists the file types and atlast we pipe the output to grep with keyword ASCII to get the humanreadable files.
 - the password is in the file "inhere/maybehere07/.file2"
 $ cat inhere/maybehere07/.file2
-P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
 
 6->7
 - Connect to bandit.labs.overthewire.org on port 2220 via SSH as user "bandit6"
@@ -76,7 +70,6 @@ $ cd ../..
 $ find -group bandit6 -user bandit7 -size 33c
 - The only file we got permission for is "./var/lib/dpkg/info/bandit7.password"
 $ cat ./var/lib/dpkg/info/bandit7.password
-z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S
 
 7->8
 - Connect to bandit.labs.overthewire.org on port 2220 via SSH as user "bandit7"
@@ -84,7 +77,6 @@ $ ssh bandit7@bandit.labs.overthewire.org -p 2220
 - The password for bandit8 is stored in the file "data.txt" next to the word "millionth"
 - To find the password we can pipe the output of cat to grep.
 $ cat data.txt | grep millionth
-TESKZC0XvTetK0S9xNwm25STk5iWrBvP
 
 8->9
 - Connect to bandit.labs.overthewire.org on port 2220 via SSH as user "bandit8"
@@ -92,7 +84,6 @@ $ ssh bandit8@bandit.labs.overthewire.org -p 2220
 - The password for bandit9 is stored in the file "data.txt" and is the only line of text that occurs only once.
 - We can use "uniq" command but before that the file must be sorted. That is because uniq will only remove repeated lines if they are adjacent to each other.
 $ sort data.txt | uniq -u
-EN632PlfYiZbn3PhVK3XOGSlNInNE00t
 
 9->10
 - Connect to bandit.labs.overthewire.org on port 2220 via SSH as user "bandit9"
@@ -104,8 +95,7 @@ $ strings data.txt |grep ===
 ========== the#
 ========== password
 ========== is
-========== G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s
-G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s
+========== ################
 
 10->11
 - Connect to bandit.labs.overthewire.org on port 2220 via SSH as user "bandit10"
@@ -113,7 +103,7 @@ $ ssh bandit10@bandit.labs.overthewire.org -p 2220
 - The password for bandit11 is stored in the file "data.txt", which contains base64 encoded data.
 - Linux has a tool called "base64" which we can use to decode the data.
 $ base64 -d data.txt
-The password is 6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM
+The password is #################
 
 11->12
 - Connect to bandit.labs.overthewire.org on port 2220 via SSH as user "bandit11"
@@ -121,7 +111,7 @@ $ ssh bandit11@bandit.labs.overthewire.org -p 2220
 - The password for bandit12 is stored in the file "data.txt", where all letters have been rotated by 13 positions.
 - This is a Rot13 substitution cipher.
 - Though it is a simple enough cipher to solve by hand there are tools online to solve it. (I used rot13.com)
-The password is JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv
+The password is ##################
 
 12->13
 - Connect to bandit.labs.overthewire.org on port 2220 via SSH as user "bandit12"
@@ -166,7 +156,7 @@ $ xxd data8.bin >taruncompressed2.txt
 $ mv data8.bin data8.gz
 $ gzip -d data8.gz
 - And finally we get the next password:
-"The password is wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw"
+"The password is ################"
 - This propably could have been automated but anyways we got the password...
 
 13->14
@@ -192,14 +182,12 @@ $ nmap localhost
 - We can use the tool netcat to communicate with the server.
 $ nc localhost 30000
 - Now just give the password and press enter. (Use quit to exit nc)
-jN2kgmIXJ6fShzhT2avhotn4Zcka6tnt
 
 15->16
 - The password for the next level can be retrieved by submitting the password of the current level to port 30001 on localhost using SSL encryption.
 - This can be done using openssl.
 $ openssl s_client -connect localhost:30001
 - After connecting, just give the password we got on the last level.
-JQttfApK4SeyHwDlI9SXGR50qclOAil1
 
 16->17
 - The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it.
@@ -227,18 +215,15 @@ $ ssh -i sshkey.private bandit17@bandit.labs.overthewire.org -p 2220
 - Tool called diff can be used to find differences between files.
 $ diff passwords.old passwords.new
 - The line after > is the changed line on the later file so the password is after it.
-hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg
 
 18->19
 - The password for level 19 is stored in a file "readme" in the homedir. The thing is, someone has modified ".bashrc" file to log out when you log in with SSH.
 - Good thing is we can send commands directly with SSH. 
 $ ssh bandit18@bandit.labs.overthewire.org -p 2220 "cat readme"
-awhqfNnAbc1naukrpqDYcF95h7HoMTrC
 
 19->20
 - To gain access to the next level, you should use the setuid binary in the homedirectory. The password for this level can be found in the usual place (/etc/bandit_pass), after you have used the setuid binary.
 - The password for bandit20 can be read by using the binary given.
 $ ./bandit20-do cat /etc/bandit_pass/bandit20
-VxCazJaVykI6W36BkBU0mJTCM8rR95XT
 
 20->21
